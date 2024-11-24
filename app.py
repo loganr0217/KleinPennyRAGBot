@@ -1,5 +1,5 @@
 # Importing flask for setting up basic server
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Importing requests, BeautifulSoup for scraping property site
@@ -18,6 +18,7 @@ from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain, create_history_aware_retriever
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import HumanMessage
 
 # Importing langsmith Client for communication
 from langsmith import Client
@@ -100,11 +101,11 @@ def askQuestion():
     question = request.args.get('question', default='null', type=str)
 
     response = rag_chain.invoke({"input": question, "chat_history": chat_history})
-
+    chat_history.extend([HumanMessage(content=question), response["answer"]])
     # Formatting answer so it can be returned
-    fullAnswer = response["answer"] + "\n\nYou can check out more related properties here: \n"
-    for found in response["context"]:
-        fullAnswer += found.metadata["title"] + ": " + found.metadata["source"] + "\n"
+    fullAnswer = response["answer"]
+    # for found in response["context"]:
+    #     fullAnswer += found.metadata["title"] + ": " + found.metadata["source"] + "\n"
 
     return fullAnswer
 
@@ -115,6 +116,7 @@ def askQuestionFullResponse():
 
     # Using rag_chain to get answer and context
     response = rag_chain.invoke({"input": question, "chat_history": chat_history})
+    chat_history.extend([HumanMessage(content=question), response["answer"]])
 
     currentContext = [str(i) for i in response["context"]]
     currentTitles = [i.metadata["title"] for i in response["context"]]
@@ -124,7 +126,7 @@ def askQuestionFullResponse():
     for found in response["context"]:
         fullAnswer += found.metadata["title"] + ": " + found.metadata["source"] + "\n"
 
-    return [fullAnswer, currentContext, currentTitles]
+    return jsonify([fullAnswer, currentContext, currentTitles])
 
 
 
