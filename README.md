@@ -54,7 +54,7 @@ This repository contains the **KleinPenny RAG-Chatbot**, a RAG chatbot designed 
    - You can send questions using tools like cURL, Postman, or a Python script.
 
 6. **Evaluate with DeepEval**
-   - Optionally, test the chatbot’s performance using DeepEval by running the following command:
+   - Optionally, test the chatbot’s performance using DeepEval by running the following command after the server is live:
      ```bash
      python3 test.py
      ```
