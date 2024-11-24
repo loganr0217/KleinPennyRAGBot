@@ -13,8 +13,17 @@ This repository contains the **KleinPenny RAG-Chatbot**, a RAG chatbot designed 
 ---
 
 ## Setup Instructions
-
-1. **Set Up Python Virtual Environment**
+1. **Create mySecrets.py File**
+   - Create a file named mySecrets.py
+   - Add the following code and replace with your own keys:
+   ```bash
+     class Secrets:
+         OPENAI_API_KEY = "{Your OpenAI API Key}"
+         PINECONE_API_KEY = "{Your Pinecone API Key}"
+         LANGCHAIN_API_KEY = "{Your LangChain API Key}"
+     ```
+   - Save the file 
+2. **Set Up Python Virtual Environment**
    - Create a virtual environment to manage dependencies:
      ```bash
      python3 -m venv venv
@@ -29,13 +38,13 @@ This repository contains the **KleinPenny RAG-Chatbot**, a RAG chatbot designed 
        .\venv\Scripts\activate
        ```
 
-2. **Install Dependencies**
+3. **Install Dependencies**
    - Install the required dependencies using the following command:
      ```bash
      pip install -r requirements.txt
      ```
 
-3. **Initialize the Application**
+4. **Initialize the Application**
    - Run the initialization script:
      ```bash
      python3 init.py
@@ -54,7 +63,7 @@ This repository contains the **KleinPenny RAG-Chatbot**, a RAG chatbot designed 
    - You can send questions using tools like cURL, Postman, or a Python script.
 
 6. **Evaluate with DeepEval**
-   - Optionally, test the chatbot’s performance using DeepEval by running the following command after the server is live:
+   - Optionally, test the chatbot’s performance using DeepEval by running the following command:
      ```bash
      python3 test.py
      ```
