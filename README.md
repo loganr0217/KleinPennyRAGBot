@@ -56,13 +56,18 @@ This repository contains the **KleinPenny RAG-Chatbot**, a RAG chatbot designed 
      ```bash
      python3 app.py
      ```
-
-5. **Test the Application**
+5. **Interact with the Chatbot**
+   - Run the following command to start the gradio Chatbot UI
+    ```bash
+      python3 chatbotUI.py
+     ```
+     
+6. **Use the Chatbot Endpoint Yourself**
    - Use the `/ask` endpoint to interact with the chatbot by asking a question
    - Use the `/askFull` endpoint to get a more complete response including the following: [answer, context, propertyTitles]
    - You can send questions using tools like cURL, Postman, or a Python script.
 
-6. **Evaluate with DeepEval**
+7. **Evaluate with DeepEval**
    - Optionally, test the chatbot’s performance using DeepEval by running the following command:
      ```bash
      python3 test.py
