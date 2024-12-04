@@ -58,10 +58,10 @@ This repository contains the **KleinPenny RAG-Chatbot**, a RAG chatbot designed 
      ```
 5. **Interact with the Chatbot**
    - Run the following command to start the gradio Chatbot UI
-    ```bash
+     ```bash
       python3 chatbotUI.py
      ```
-     
+
 6. **Use the Chatbot Endpoint Yourself**
    - Use the `/ask` endpoint to interact with the chatbot by asking a question
    - Use the `/askFull` endpoint to get a more complete response including the following: [answer, context, propertyTitles]
