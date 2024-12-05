@@ -10,6 +10,7 @@ from deepeval.metrics import ContextualRelevancyMetric
 
 import requests
 import json
+from tqdm import tqdm
 
 from mySecrets import Secrets
 import os
@@ -46,5 +47,7 @@ for testIndex in range(len(inputs)):
     tests.append(test_case)
 
 # Doing tests for each metric
-for test in tests:
-    assert_test(test, [AnswerRelevancyMetric(threshold=0.4), FaithfulnessMetric(threshold=0.4), ContextualRecallMetric(threshold=0.4), ContextualPrecisionMetric(threshold=0.4), ContextualRelevancyMetric(threshold=0.25)])
+for testId in range(len(tests)):
+    print("Test Metrics:")
+    for metric in tqdm([AnswerRelevancyMetric(threshold=0.4), FaithfulnessMetric(threshold=0.4), ContextualRecallMetric(threshold=0.4), ContextualPrecisionMetric(threshold=0.4), ContextualRelevancyMetric(threshold=0.25)]):
+        assert_test(tests[testId], [metric])
